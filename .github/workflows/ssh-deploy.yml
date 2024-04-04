@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d_%H.%M.%S')"
 
       - name: test vars
         run: echo "${{ github.server_url }}/${{ github.repository }}"
@@ -34,7 +34,7 @@ jobs:
       - name: Deploy code
         uses: appleboy/ssh-action@master
         env:
-          PROJECT_DIR: ${{ steps.date.outputs.date }}-${{ github.head_ref }}
+          PROJECT_DIR: ${{ steps.date.outputs.date }}
         with:
           host: ${{ vars.DEPLOY_HOST }}
           username: ${{ secrets.SSH_USER }}
