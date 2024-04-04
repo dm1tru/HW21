@@ -48,5 +48,5 @@ jobs:
             mkdir -p /var/www/html/${{ env.PROJECT_DIR }}/var/log
             ln -s /var/www/html/shared/log /var/www/html/${{ env.PROJECT_DIR }}/var/log 
             ( [ ! -d /var/www/html/current ] || mv -Tf /var/www/html/current /var/www/html/previous )
-            ln -s /var/www/html/${{ env.PROJECT_DIR }} /var/www/html/current"
+            ln -s /var/www/html/${{ env.PROJECT_DIR }} /var/www/html/current
 
