@@ -52,3 +52,22 @@ jobs:
             ( [ ! -d /var/www/html/current ] || mv -Tf /var/www/html/current /var/www/html/previous )
             ln -s /var/www/html/${{ env.PROJECT_DIR }} /var/www/html/current
 
+  rollback:
+    environment: testenv
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+      - name: Rollback code
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ vars.DEPLOY_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            unlink /var/www/html/current
+            mv -Tf /var/www/html/previous /var/www/html/current
+            cd /var/www/html/current
+            sh ./rollback.sh  ${{ vars.DEPLOY_HOST }}
