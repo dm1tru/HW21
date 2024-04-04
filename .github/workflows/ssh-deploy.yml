@@ -46,7 +46,7 @@ jobs:
             git clone ${{ github.server_url }}/${{ github.repository }}.git ${{ env.PROJECT_DIR }}            
             rm -rf /var/www/html/${{ env.PROJECT_DIR }}/var/log
             mkdir -p /var/www/html/${{ env.PROJECT_DIR }}/var/log
-            sh /var/www/html/${{ env.PROJECT_DIR }}/deploy.sh 
+            sh /var/www/html/${{ env.PROJECT_DIR }}/deploy.sh ${{ vars.DEPLOY_HOST }} ${{ secrets.MYSQL_HOST }} ${{ secrets.MYSQL_USER }} ${{ secrets.MYSQL_PASSWORD }} ${{ secrets.MYSQL_DATABASE }}
             ln -s /var/www/html/shared/log /var/www/html/${{ env.PROJECT_DIR }}/var/log 
             ( [ ! -d /var/www/html/current ] || mv -Tf /var/www/html/current /var/www/html/previous )
             ln -s /var/www/html/${{ env.PROJECT_DIR }} /var/www/html/current
