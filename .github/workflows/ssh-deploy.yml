@@ -43,4 +43,4 @@ jobs:
             echo ${{ env.PROJECT_DIR }}
             cd /var/www/html
             rm -rf ${{ env.PROJECT_DIR }} 
-             
+            git clone ${{ github.server_url }}/${{ github.repository }}.git ${{ env.PROJECT_DIR }}  
