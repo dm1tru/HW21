@@ -43,4 +43,9 @@ jobs:
             echo ${{ env.PROJECT_DIR }}
             cd /var/www/html
             rm -rf ${{ env.PROJECT_DIR }} 
-            git clone ${{ github.server_url }}/${{ github.repository }}.git ${{ env.PROJECT_DIR }}  
+            git clone ${{ github.server_url }}/${{ github.repository }}.git ${{ env.PROJECT_DIR }}
+            rm -rf /var/www/html/$DIR/var/log &&
+            ln -s /var/www/html/shared/log /var/www/html/$DIR/var/log &&
+            ( [ ! -d /var/www/html/current ] || mv -Tf /var/www/html/current /var/www/html/previous ) &&
+            ln -s /var/www/html/$DIR /var/www/html/current"
+
