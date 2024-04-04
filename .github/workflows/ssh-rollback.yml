@@ -25,9 +25,9 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            unlink /var/www/html/current &&
-            mv -Tf /var/www/html/previous /var/www/html/current &&
-            cd /var/www/html/current &&
+            unlink /var/www/html/current
+            mv -Tf /var/www/html/previous /var/www/html/current
+            cd /var/www/html/current
             sh ./rollback.sh  ${{ vars.DEPLOY_HOST }}
 
 
