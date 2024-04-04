@@ -48,6 +48,6 @@ jobs:
             mkdir -p /var/www/html/${{ env.PROJECT_DIR }}/var/log
             cd /var/www/html/${{ env.PROJECT_DIR }}
             ln -s /var/www/html/shared/log /var/www/html/${{ env.PROJECT_DIR }}/var/log
-            mv -Tf /var/www/html/current/* /var/www/html/previous/*
+            mv -Tf /var/www/html/current /var/www/html/previous
             ln -s /var/www/html/${{ env.PROJECT_DIR }} /var/www/html/current
             
