@@ -2,7 +2,7 @@
 
 $conf = parse_ini_file(".env");
 
-echo "<h3>HELLO WORLD! (VERSION 3)</h3>";
+echo "<h3>HELLO WORLD! (VERSION 4)</h3>";
 
 echo "<h2>PHP: " . phpversion() . "</h2>";
 
