@@ -28,10 +28,19 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
 
       - name: test vars
-        run: echo " ${{ vars.TEST_VAR }}"
+        run: echo "${{ github.server_url }}/${{ github.repository }}"
 
 
-      - name: Setup SSH Key
-        uses: webfactory/ssh-agent@v0.5.0
+      - name: Deploy code
+        uses: appleboy/ssh-action@master
+        env:
+          PROJECT_DIR: ${{ steps.date.outputs.date }}
         with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+          host: ${{ vars.DEPLOY_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo ${{ env.PROJECT_DIR }}
+            cd /var/www/html
+            rm -rf ${{ env.PROJECT_DIR }} 
+             
